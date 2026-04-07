@@ -1,55 +1,53 @@
-# Setting Up a Jupyter Workspace
+# Spotify Top 50 elemzés
 
-Follow these steps to set up a Jupyter workspace on your system. This guide assumes you have Python installed; if not, install it first from [python.org](https://www.python.org/downloads/).
+## Projekt célja
+Ez a projekt egy end-to-end adatelemzési pipeline implementálása, amelynek célja a Spotify globális streaming-adatainak kvantitatív kiértékelése. A `top50.ipynb` notebook-ban a több mint 3500 egyedi rekordot tartalmazó, többdimenziós adathalmazból dolgozunk, ahol minden dalhoz 21 különböző akusztikai jellemző és metaadat-paraméter tartozik.
 
-## Step 1: Install Jupyter
-Open a terminal and run:
+A Python data science moduljait használjuk az adatelőkészítéstől az elemzésig. A fő célok között szerepel az adatok strukturálása, a leíró statisztika felállítása, a változók közötti korrelációk feltérképezése és egy prediktív regressziós modell kialakítása a dalok népszerűségének becslésére.
+
+A feldolgozás három fő pillérre épül:
+- Adatkezelés: Pandas DataFrame segítségével betöltöttük és előkészítettük az adatokat. A `describe()` metódussal feltártuk a változók eloszlását, átlagait és szórásait; például a globális slágerek tempóeloszlása 121 BPM környékén sűrűsödik.
+- Vizuális diagnosztika: Matplotlib és Seaborn grafikonokkal vizsgáltuk a változók közötti összefüggéseket, például a `Danceability` és a `Popularity` kapcsolatát.
+- Rendszerarchitektúra és prediktív modellezés: scikit-learn segítségével regressziós modellt építettünk, amely jelenleg 68,11%-os magyarázó erővel becsüli a dalok várható népszerűségét a zenei paraméterek alapján. A modell szerint a `Loudness` és az `Acousticness` a legerősebb prediktív faktorok.
+
+## Csapattagok
+- Ladóczki-Szabó Ágnes Lilla - B4LQZ2
+- Farkas István-DGXP7K
+- Németh Tamás - FGCBKF
+- Somogyi Dániel - F4HWCL
+
+## Jupyter notebook beállítása
+
+Kövesd az alábbi lépéseket a Jupyter notebook beállításához. A leírás feltételezi, hogy a Python már telepítve van; ha nincs, telepítsd a [python.org](https://www.python.org/downloads/) oldalról.
+
+### 1. lépés: Jupyter telepítése
+A `jupyter` parancs akkor érhető el, ha a Jupyter csomagok telepítve vannak a futtatott Python környezetben.
+Linuxon (Ubuntu/Debian) használj `python3`-at és pipet:
 ```bash
-pip install jupyter
+python3 -m pip install --user notebook jupyterlab
 ```
-This installs Jupyter Notebook and JupyterLab.
-
-## Step 2: Create a Workspace Directory
-Create a dedicated folder for your Jupyter projects:
+Ha a telepítés után a `jupyter` parancs továbbra sem található, add hozzá a felhasználói binárisok útvonalát a PATH-hoz:
 ```bash
-mkdir jupyter-workspace
-cd jupyter-workspace
+export PATH="$HOME/.local/bin:$PATH"
 ```
-
-## Step 3: Launch Jupyter
-Start Jupyter Notebook or JupyterLab:
-- For Notebook: `jupyter notebook`
-- For JupyterLab: `jupyter lab`
-
-This opens a browser window at `http://localhost:8888` with the Jupyter interface.
-
-## Step 4: Create Your First Notebook
-In the Jupyter interface:
-1. Click "New" > "Python 3" (or your kernel).
-2. Name your notebook (e.g., `my_first_notebook.ipynb`).
-3. Start writing code in cells.
-
-## Step 5: Install Additional Packages (Optional)
-For data science, install common libraries:
+Ezután indíthatod a Jupyter Notebookot vagy Labot:
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn
+jupyter notebook
+jupyter lab
 ```
-
-## Step 6: Configure Jupyter (Optional)
-Create a config file for custom settings:
+Ha pip nincs telepítve, előbb ezt futtasd:
 ```bash
-jupyter notebook --generate-config
-```
-Edit `~/.jupyter/jupyter_notebook_config.py` to set options like password or port.
-
-## Step 7: Use Extensions (Optional)
-Install extensions for enhanced functionality:
-```bash
-pip install jupyter_contrib_nbextensions
-jupyter contrib nbextension install --user
+sudo apt update
+sudo apt install python3-pip
 ```
 
-## Step 8: Run and Share
-- Execute cells with Shift+Enter.
-- Save notebooks as `.ipynb` files.
-- Export to PDF/HTML via File > Download as.
+### 2. lépés: Munkaterület könyvtár létrehozása
+Lépj be a már meglévő mappába, ahol az `ipynb` és a `csv` fájl is található:
+
+### 3. lépés: Jupyter indítása
+Indítsd el a Jupyter Notebookot vagy JupyterLab-et:
+```bash
+jupyter notebook
+```
+
+Ekkor megnyílik egy böngészőablak a `http://localhost:8888` címen a Jupyter felülettel.
