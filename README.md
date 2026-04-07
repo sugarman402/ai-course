@@ -1,14 +1,14 @@
 # Spotify Top 50 elemzés
 
 ## Projekt célja
-Ez a projekt egy end-to-end adatelemzési pipeline implementálása, amelynek célja a Spotify globális streaming-adatainak kvantitatív kiértékelése. A `top50.ipynb` notebook-ban a több mint 3500 egyedi rekordot tartalmazó, többdimenziós adathalmazból dolgozunk, ahol minden dalhoz 21 különböző akusztikai jellemző és metaadat-paraméter tartozik.
+Ez a projekt egy end-to-end adatelemzési pipeline implementálása, amelynek célja a Spotify globális streaming-adatainak kvantitatív kiértékelése. A `top50.ipynb` notebook-ban a több mint 3500 egyedi rekordot tartalmazó, többdimenziós adathalmazból dolgozunk, ahol minden zenemű 21 különböző akusztikai jellemzővel és metaadat-paraméterrel rendelkezik.
 
-A Python data science moduljait használjuk az adatelőkészítéstől az elemzésig. A fő célok között szerepel az adatok strukturálása, a leíró statisztika felállítása, a változók közötti korrelációk feltérképezése és egy prediktív regressziós modell kialakítása a dalok népszerűségének becslésére.
+A technikai megvalósítás során a Python data science moduljait alkalmaztuk. A folyamat kritikus pontja az adat-előkészítés (data preprocessing) és a többváltozós statisztikai szűrés volt. A kód célja, hogy a fájlrendszerben tárolt nyers adatforrást a memóriában olyan strukturált formátumba hozza, amely alkalmas a zenei jellemzők és a piaci siker közötti összefüggések feltárására.
 
-A feldolgozás három fő pillérre épül:
-- Adatkezelés: Pandas DataFrame segítségével betöltöttük és előkészítettük az adatokat. A `describe()` metódussal feltártuk a változók eloszlását, átlagait és szórásait; például a globális slágerek tempóeloszlása 121 BPM környékén sűrűsödik.
-- Vizuális diagnosztika: Matplotlib és Seaborn grafikonokkal vizsgáltuk a változók közötti összefüggéseket, például a `Danceability` és a `Popularity` kapcsolatát.
-- Rendszerarchitektúra és prediktív modellezés: scikit-learn segítségével regressziós modellt építettünk, amely jelenleg 68,11%-os magyarázó erővel becsüli a dalok várható népszerűségét a zenei paraméterek alapján. A modell szerint a `Loudness` és az `Acousticness` a legerősebb prediktív faktorok.
+A feldolgozási logikát három fő pillérre építettük:
+- Adatkezelés: A Pandas könyvtár segítségével az adatokat egy optimalizált DataFrame objektumba töltöttük be. Itt végeztük el a leíró statisztikai elemzést a `describe()` metódussal, amely feltárta a változók eloszlását, az átlagértékeket és a szórásokat. Megállapítottuk például, hogy a globális slágerek tempóeloszlása egy viszonylag szűk tartományban, 121 BPM környékén mutat sűrűsödést.
+- Vizuális diagnosztika: A Matplotlib és Seaborn könyvtárakat integráltuk a kódba a változók közötti korrelációk feltérképezéséhez. Ez lehetővé tette a többváltozós összefüggések (például a `Danceability` és a `Popularity` közötti kapcsolat) grafikus validálását közvetlenül a Jupyter notebook környezetben.
+- Rendszerarchitektúra és prediktív modellezés: A scikit-learn keretrendszer bevezetése nem csupán előkészület volt, hanem a workflow központi eleme, amely lehetővé tette egy nagy pontosságú regressziós modell implementálását. A rendszer jelenleg 68,11%-os magyarázó erővel képes megbecsülni egy dal várható népszerűségét a zenei paraméterei alapján. A modell tanulsága szerint a hangosság (`Loudness`) és a hangszerelés jellege (`Acousticness`) a legerősebb prediktív faktorok, ami igazolja az eredeti feltételezésünket: a zenei siker paraméterezhető és adatvezérelt módszerekkel előrejelezhető.
 
 ## Csapattagok
 - Ladóczki-Szabó Ágnes Lilla - B4LQZ2
